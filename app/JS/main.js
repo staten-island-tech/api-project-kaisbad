@@ -1,30 +1,25 @@
 import "../CSS/style.css";
 import { DOMSelectors } from "../JS/dom.js";
 
-/* async function getData() {
-  //fetch returns a promise
-  const response = await fetch(
-    `https://api.allorigins.win/get?url=${encodeURIComponent(
-      "https://www.demonslayer-api.com/api/v1/characters"
-    )}`
-  );
-  const data = await response.json();
-  document.querySelector("h1").textContent = data.name;
-  console.log(data);
-} */
+async function getData() {
+  try {
+    //fetch returns a promise
+    const response = await fetch(
+      `https://api.allorigins.win/get?url=${encodeURIComponent(
+        "https://www.demonslayer-api.com/api/v1/characters"
+      )}`
+    );
+    const data = await response.json();
+    document.querySelector("h1").textContent = data.name;
+    console.log(data);
+  } catch {}
 
-const response = await fetch(
-  `https://api.allorigins.win/get?url=${encodeURIComponent(
-    "https://www.demonslayer-api.com/api/v1/characters"
-  )}`
-);
-const data = await response.json();
-
-function clearCards() {
-  DOMSelectors.container.innerHTML = "";
+  function clearCards() {
+    DOMSelectors.container.innerHTML = "";
+  }
 }
 
-function insertCard() {
+async function insertCard() {
   clearCards();
   let cardHtml = "";
   data.forEach((character) => {
