@@ -16,6 +16,8 @@ async function getData() {
   } catch {}
 }
 
+getData();
+
 function clearCards() {
   DOMSelectors.container.innerHTML = "";
 }
