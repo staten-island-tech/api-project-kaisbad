@@ -12,14 +12,15 @@ async function getData() {
     const data = await response.json();
     document.querySelector("h1").textContent = data.name;
     console.log(data);
+    insertCard(data);
   } catch {}
-
-  function clearCards() {
-    DOMSelectors.container.innerHTML = "";
-  }
 }
 
-async function insertCard() {
+function clearCards() {
+  DOMSelectors.container.innerHTML = "";
+}
+
+function insertCard(data) {
   clearCards();
   let cardHtml = "";
   data.forEach((character) => {
