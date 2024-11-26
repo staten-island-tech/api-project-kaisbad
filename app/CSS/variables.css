@@ -1,0 +1,12 @@
+:root {
+  --light-blue: #8888ff;
+  --dark-blue: #0000ff;
+  --light-red: #ff9578;
+  --dark-red: #ff0000;
+
+  --h1: 3.815rem;
+  --h2: 3.052rem;
+  --h3: 2.441rem;
+  --h4: 1.953rem;
+  --h5: 1.563rem;
+}
