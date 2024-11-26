@@ -37,3 +37,6 @@ function insertCard(data) {
 }
 
 insertCard();
+
+//separate api calls for each button press
+//more than one api call
