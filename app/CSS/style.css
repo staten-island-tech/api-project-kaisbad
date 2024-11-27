@@ -2,31 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 10px;
+}
+
 .container {
-    display: flex;
-    width: 96%;
-    margin: 2rem auto;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-around;
-  }
-  
-  .card {
-    width: 17%;
-    min-height: 25rem;
-    border: 2px solid black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    margin-bottom: 3%;
-    box-shadow: 9px 8px black;
-    border-radius: 2rem;
-  }
-  
-  .card-img {
-    height: 75%;
-    width: auto;
-    max-width: 75%;
-    object-fit: cover;
-  }
+  display: flex;
+  width: 96%;
+  margin: 2rem auto;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.card {
+  width: 17%;
+  min-height: 25rem;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 3%;
+  box-shadow: 9px 8px black;
+  border-radius: 2rem;
+}
+
+.card-img {
+  height: 75%;
+  width: auto;
+  max-width: 75%;
+  object-fit: cover;
+}
