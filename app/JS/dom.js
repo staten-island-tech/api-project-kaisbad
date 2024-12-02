@@ -3,6 +3,8 @@ const DOMSelectors = {
   button: document.querySelector(".btn"),
   form: document.querySelector(".form"),
   reset: document.getElementById("reset"),
+  create: document.getElementById("create"),
+  learn: document.getElementById("learn"),
 };
 
 export { DOMSelectors };
