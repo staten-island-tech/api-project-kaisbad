@@ -39,7 +39,7 @@ function insertCard(characters) {
         <li>${character.race}</li></ul>
         <img class="card-img h-auto max-w-[100%] object-cover" src="${character.img}" alt="person" class="card-img">
         <ul class="text-center whitespace-normal"><li>${character.quote}</li></ul>
-        <button class="btn flex w-[96%] mx-auto my-8 justify-around" id="learn" data-id="${character.name}>Learn More</button>
+        <button class="learn flex w-[96%] mx-auto my-8 justify-around">Learn More</button>
       </div>
       
         `;
@@ -47,7 +47,11 @@ function insertCard(characters) {
   DOMSelectors.container.insertAdjacentHTML("afterbegin", cardHtml);
 }
 
-DOMSelectors.btn.addEventListener("click", handleButtonClick);
+DOMSelectors.container.addEventListener("click", function (event) {
+  if (event.target.classList.contains("learn")) {
+    clearCards();
+  }
+});
 
 DOMSelectors.reset.addEventListener("click", () => {
   clearCards();
