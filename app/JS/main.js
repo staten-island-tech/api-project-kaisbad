@@ -1,6 +1,8 @@
 import "../CSS/style.css";
 import { DOMSelectors } from "../JS/dom.js";
 
+let characters = [];
+
 async function getData() {
   try {
     //fetch returns a promise
@@ -11,7 +13,7 @@ async function getData() {
     );
     const data = await response.json();
     const parseddata = JSON.parse(data.contents);
-    const characters = parseddata.content;
+    characters = parseddata.content;
     console.log("Characters:", characters);
     if (Array.isArray(characters)) {
       insertCard(characters);
@@ -31,33 +33,62 @@ function clearCards() {
 
 function insertCard(characters) {
   clearCards();
-  let cardHtml = "";
   characters.forEach((character) => {
-    cardHtml += `<div class="card flex flex-col justify-evenly w-[17%] border-2 border-black mb-[3%] shadow-[9px_8px_0_black] rounded-2xl">
-        <h2 class="header mx-auto">${character.name}</h2>
-        <ul class="text-center whitespace-normal"><li>${character.gender}</li>
-        <li>${character.race}</li></ul>
-        <img class="card-img h-auto max-w-[100%] object-cover" src="${character.img}" alt="person" class="card-img">
-        <ul class="text-center whitespace-normal"><li>${character.quote}</li></ul>
-        <button class="learn flex w-[96%] mx-auto my-8 justify-around">Learn More</button>
+    DOMSelectors.container.insertAdjacentHTML(
+      "beforeend",
+      `<div class="card flex flex-col justify-evenly items-center w-[17%] border-2 border-black mb-[3%] shadow-[9px_8px_0_black] rounded-2xl">
+        <h2 class="header text-3xl text-center">${character.name}</h2>
+        <ul class="text-lg text-center"><li>${character.gender}</li>
+        <li class="text-lg text-center">${character.race}</li></ul>
+        <img class="card-img h-auto max-w-[70%] object-cover" src="${character.img}" alt="person" class="card-img">
+        <ul class="text-center w-[95%]"><li>${character.quote}</li></ul>
+        <button class="learn text-2xl flex w-[96%] mx-auto my-8 justify-around" data-id="${character.id}">Learn More</button>
       </div>
       
-        `;
+        `
+    );
   });
-  DOMSelectors.container.insertAdjacentHTML("afterbegin", cardHtml);
 }
 
 DOMSelectors.container.addEventListener("click", function (event) {
   if (event.target.classList.contains("learn")) {
-    clearCards();
+    const characterID = event.target.getAttribute("data-id");
+    const selectedCharacter = characters.find(
+      (character) => character.id.toString() === characterID
+    );
+    if (selectedCharacter) {
+      createSelectedCard(selectedCharacter);
+    } else {
+      console.error("error");
+    }
   }
 });
 
-DOMSelectors.reset.addEventListener("click", () => {
+function createSelectedCard(selectedCharacter) {
   clearCards();
-});
+  let cardHtml = `<div class="card flex flex-col justify-evenly items-center w-[60%] h-auto border-2 border-black mb-[3%] shadow-[9px_8px_0_black] rounded-2xl">
+        <h2 class="header text-3xl mx-auto">${selectedCharacter.name}</h2>
+        <ul class="text-center"><li>${selectedCharacter.gender}</li>
+        <li>${selectedCharacter.race}</li></ul>
+        <img class="card-img h-auto w-70% max-w-[70%] object-cover" src="${selectedCharacter.img}" alt="person" class="card-img">
+        <br>
+        <ul class="text-center"><li>${selectedCharacter.quote}</li>
+        <br>
+        <li class="text-center">${selectedCharacter.description}</li></ul>
+        <button class="return text-4xl flex w-[96%] mx-auto my-8 justify-around data-id="${selectedCharacter.id}">Return</button>
+      </div>
+      `;
+  DOMSelectors.container.insertAdjacentHTML("afterbegin", cardHtml);
 
-DOMSelectors.learn.addEventListener("click", () => {
+  const returnButton = document.querySelector(".return");
+  if (returnButton) {
+    returnButton.addEventListener("click", () => {
+      clearCards();
+      insertCard(characters);
+    });
+  }
+}
+DOMSelectors.reset.addEventListener("click", () => {
   clearCards();
 });
 
