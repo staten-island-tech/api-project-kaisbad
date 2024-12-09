@@ -36,7 +36,7 @@ function insertCard(characters) {
   characters.forEach((character) => {
     DOMSelectors.container.insertAdjacentHTML(
       "beforeend",
-      `<div class="card flex flex-col justify-evenly items-center w-[17%] border-2 border-black mb-[3%] shadow-[9px_8px_0_black] rounded-2xl">
+      `<div class="card flex flex-col justify-evenly items-center w-[17%] [@media(max-width:1200px)]:w-[22%] [@media(max-width:800px)]:w-[50%] border-2 border-black mb-[3%] shadow-[9px_8px_0_black] rounded-2xl">
         <h2 class="header text-2xl text-center">${character.name}</h2>
         <ul class="text-base text-center"><li>${character.gender}</li>
         <li class="text-base text-center">${character.race}</li></ul>
