@@ -37,11 +37,11 @@ function insertCard(characters) {
     DOMSelectors.container.insertAdjacentHTML(
       "beforeend",
       `<div class="card flex flex-col justify-evenly items-center w-[17%] border-2 border-black mb-[3%] shadow-[9px_8px_0_black] rounded-2xl">
-        <h2 class="header text-3xl text-center">${character.name}</h2>
-        <ul class="text-lg text-center"><li>${character.gender}</li>
-        <li class="text-lg text-center">${character.race}</li></ul>
+        <h2 class="header text-2xl text-center">${character.name}</h2>
+        <ul class="text-base text-center"><li>${character.gender}</li>
+        <li class="text-base text-center">${character.race}</li></ul>
         <img class="card-img h-auto max-w-[70%] object-cover" src="${character.img}" alt="person" class="card-img">
-        <ul class="text-center w-[95%]"><li>${character.quote}</li></ul>
+        <ul class="text-base text-center w-[95%]"><li>${character.quote}</li></ul>
         <button class="learn text-2xl flex w-[96%] mx-auto my-8 justify-around" data-id="${character.id}">Learn More</button>
       </div>
       
@@ -68,11 +68,11 @@ function createSelectedCard(selectedCharacter) {
   clearCards();
   let cardHtml = `<div class="card flex flex-col justify-evenly items-center w-[60%] h-auto border-2 border-black mb-[3%] shadow-[9px_8px_0_black] rounded-2xl">
         <h2 class="header text-3xl mx-auto">${selectedCharacter.name}</h2>
-        <ul class="text-center"><li>${selectedCharacter.gender}</li>
+        <ul class="text-center text-lg"><li>${selectedCharacter.gender}</li>
         <li>${selectedCharacter.race}</li></ul>
         <img class="card-img h-auto w-70% max-w-[70%] object-cover" src="${selectedCharacter.img}" alt="person" class="card-img">
         <br>
-        <ul class="text-center"><li>${selectedCharacter.quote}</li>
+        <ul class="text-center w-[98%]"><li>${selectedCharacter.quote}</li>
         <br>
         <li class="text-center">${selectedCharacter.description}</li></ul>
         <button class="return text-4xl flex w-[96%] mx-auto my-8 justify-around data-id="${selectedCharacter.id}">Return</button>
@@ -88,14 +88,15 @@ function createSelectedCard(selectedCharacter) {
     });
   }
 }
-DOMSelectors.reset.addEventListener("click", () => {
+
+/* DOMSelectors.reset.addEventListener("click", () => {
   clearCards();
 });
 
 DOMSelectors.create.addEventListener("click", () => {
   insertCard(characters);
 });
-
+ */
 //separate api calls for each button press
 //more than one api call
 //make the button open the card with the description and make it big
